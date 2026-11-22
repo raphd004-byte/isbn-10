@@ -47,13 +47,10 @@ check_digit = S mod 11
 
 **Example** — ISBN `020161622X`:
 ```
-(1×0) + (2×2) + (3×0) + (4×1) + (5×6) + (6×1) + (7×6) + (8×2) + (9×2) = 110
-110 mod 11 = 0  →  check digit = (11 - 0) mod 11 = 0... 
-
-Wait — actual formula used:
-remainder = total mod 11
-check_digit = (11 - remainder) mod 11  →  X if result is 10
-```
+(1×0) + (2×2) + (3×0) + (4×1) + (5×6) + (6×1) + (7×6) + (8×2) + (9×2) = 120
+120 mod 11 = 10
+Check digit = (11 - 10) mod 11 = 1
+Check digit = (11 - 10) mod 11 = 1
 
 ### ISBN-10 Validation Formula
 
@@ -95,11 +92,12 @@ check_digit = (10 - (S mod 10)) mod 10
 **Example** — `020161622X` → `9780201616224`:
 ```
 Core: 978020161622
-Weighted sum = 130
-check_digit = (10 - (130 mod 10)) mod 10 = (10 - 0) mod 10 = 0... 
-
-Actual result: 9780201616224  ✅
-```
+Weighted sum (weights 1,3,1,3,1,3,1,3,1,3,1,3):
+= (1×9) + (3×7) + (1×8) + (3×0) + (1×2) + (3×0) + (3×6) + (1×1) + (3×6) + (1×2) + (3×2)
+= 9 + 21 + 8 + 0 + 2 + 0 + 1 + 18 + 1 + 18 + 2 + 6
+= 86
+check_digit = (10 - (86 mod 10)) mod 10 = (10 - 6) mod 10 = 4
+ISBN-13 = 978020161622 + 4 = 9780201616224
 
 ---
 
