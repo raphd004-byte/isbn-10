@@ -35,7 +35,7 @@ def calculate_isbn10_check_digit(isbn9):
         total += (i + 1) * int(isbn9[i])
 
     remainder = total % 11
-    check_digit = (11 - remainder) % 11
+    check_digit = (11 - ((total * 10) % 11)) % 11
 
     if check_digit == 10:
         return "X"
